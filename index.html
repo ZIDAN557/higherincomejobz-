@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HigherIncomeJobs – Driver Jobs in the US</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --pink:       #FF6EB4;
+    --pink-soft:  #FFD6EC;
+    --pink-deep:  #C2185B;
+    --purple:     #7C3AED;
+    --purple-soft:#EDE9FE;
+    --purple-mid: #A855F7;
+    --sky:        #38BDF8;
+    --sky-soft:   #E0F4FF;
+    --sky-deep:   #0284C7;
+    --yellow:     #FBBF24;
+    --yellow-soft:#FEF9C3;
+    --yellow-deep:#B45309;
+    --green:      #22C55E;
+    --green-soft: #DCFCE7;
+    --green-deep: #15803D;
+    --white:      #FFFFFF;
+    --off-white:  #F8F7FF;
+    --dark:       #0F0A1E;
+    --dark2:      #160D2E;
+    --dark3:      #1E1340;
+    --dark4:      #261952;
+    --text:       #EDE9FE;
+    --muted:      #9D8FBF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── ANIMATED GRADIENT BG MESH ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 55% 40% at 10% 20%,  rgba(124,58,237,0.18) 0%, transparent 65%),
+      radial-gradient(ellipse 45% 35% at 90% 10%,  rgba(255,110,180,0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 80%,  rgba(56,189,248,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 35% at 20% 85%,  rgba(34,197,94,0.10)  0%, transparent 55%),
+      radial-gradient(ellipse 35% 30% at 55% 50%,  rgba(251,191,36,0.08) 0%, transparent 55%);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(15,10,30,0.88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(124,58,237,0.2);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 52px; height: 68px;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem; letter-spacing: 2.5px;
+    background: linear-gradient(90deg, var(--pink), var(--purple-mid), var(--sky));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 100%);
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 0.9rem;
+    letter-spacing: 1px; text-transform: uppercase;
+    text-decoration: none; padding: 11px 26px;
+    border-radius: 100px;
+    box-shadow: 0 4px 20px rgba(168,85,247,0.35);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(168,85,247,0.5);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; min-height: 96vh;
+    display: flex; align-items: center;
+    padding: 80px 52px 60px; overflow: hidden; z-index: 1;
+  }
+  /* floating orbs */
+  .orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(60px); pointer-events: none; opacity: 0.45;
+    animation: float linear infinite;
+  }
+  .orb1 { width:380px; height:380px; background:var(--purple); top:-80px; right:5%; animation-duration:14s; }
+  .orb2 { width:280px; height:280px; background:var(--pink); bottom:10%; right:18%; animation-duration:18s; animation-delay:-6s; }
+  .orb3 { width:200px; height:200px; background:var(--sky); bottom:20%; left:-40px; animation-duration:22s; animation-delay:-3s; }
+  .orb4 { width:160px; height:160px; background:var(--green); top:30%; right:38%; animation-duration:16s; animation-delay:-9s; opacity:0.25; }
+  @keyframes float {
+    0%   { transform: translateY(0px) rotate(0deg); }
+    33%  { transform: translateY(-22px) rotate(120deg); }
+    66%  { transform: translateY(12px) rotate(240deg); }
+    100% { transform: translateY(0px) rotate(360deg); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 640px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--yellow);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 7px 20px; border-radius: 100px; margin-bottom: 32px;
+    animation: fadeUp .6s ease both;
+  }
+  .badge-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.25);
+    animation: blink 1.8s infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.6rem, 8vw, 6.5rem);
+    line-height: 0.92; letter-spacing: 1px; color: var(--white);
+    animation: fadeUp .7s .1s ease both;
+  }
+  h1 .grad {
+    background: linear-gradient(90deg, var(--pink) 0%, var(--yellow) 50%, var(--sky) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; display: block;
+  }
+  .hero-sub {
+    font-size: 1.1rem; font-weight: 400; color: rgba(237,233,254,0.72);
+    margin: 28px 0 46px; max-width: 520px;
+    animation: fadeUp .7s .2s ease both;
+  }
+  .hero-actions {
+    display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+    animation: fadeUp .7s .3s ease both;
+  }
+  .btn-hero {
+    background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 100%);
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 1.05rem;
+    letter-spacing: 1px; text-decoration: none;
+    padding: 18px 46px; border-radius: 100px;
+    box-shadow: 0 6px 30px rgba(168,85,247,0.45);
+    transition: transform .2s, box-shadow .2s;
+    animation: hero-pulse 2.5s infinite 1s;
+  }
+  .btn-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(168,85,247,0.6);
+    animation: none;
+  }
+  @keyframes hero-pulse {
+    0%,100% { box-shadow: 0 6px 30px rgba(168,85,247,0.45); }
+    50%      { box-shadow: 0 6px 50px rgba(168,85,247,0.75); }
+  }
+  .hero-trust {
+    font-size: 0.85rem; color: var(--muted);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-trust::before { content: '🔒'; font-size: 1rem; }
+
+  /* ── TRUST CHIPS ── */
+  .trust-strip {
+    position: relative; z-index: 1;
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 24px 52px;
+    display: flex; flex-wrap: wrap; gap: 16px;
+    justify-content: center; align-items: center;
+  }
+  .trust-chip {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px; padding: 9px 20px;
+    font-size: 0.86rem; font-weight: 500; color: rgba(237,233,254,0.8);
+    transition: border-color .2s, background .2s;
+  }
+  .trust-chip:hover { border-color: rgba(168,85,247,0.4); background: rgba(124,58,237,0.1); }
+  .chip-icon { font-size: 1.1rem; }
+
+  /* ── SECTIONS COMMON ── */
+  section { position: relative; z-index: 1; padding: 100px 52px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 5px 16px; border-radius: 100px;
+    margin-bottom: 16px;
+  }
+  .tag-purple { background: var(--purple-soft); color: var(--purple); }
+  .tag-pink   { background: var(--pink-soft);   color: var(--pink-deep); }
+  .tag-sky    { background: var(--sky-soft);     color: var(--sky-deep); }
+  .tag-green  { background: var(--green-soft);   color: var(--green-deep); }
+  .tag-yellow { background: var(--yellow-soft);  color: var(--yellow-deep); }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    line-height: 1.0; color: var(--white); margin-bottom: 16px;
+  }
+  .lead {
+    font-size: 1.05rem; font-weight: 400;
+    color: rgba(237,233,254,0.6);
+    max-width: 580px; margin-bottom: 60px;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--dark2); }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+  }
+  .step-card {
+    background: var(--dark3);
+    padding: 44px 36px;
+    position: relative; overflow: hidden;
+    transition: transform .25s, background .25s;
+    border-top: 3px solid transparent;
+  }
+  .step-card:hover { transform: translateY(-4px); background: var(--dark4); }
+  .step-card.s1 { border-color: var(--purple); }
+  .step-card.s2 { border-color: var(--pink); }
+  .step-card.s3 { border-color: var(--sky); }
+  .step-card.s4 { border-color: var(--green); }
+  .step-num-bg {
+    position: absolute; top: -10px; right: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 7rem; line-height: 1; opacity: 0.06; color: #fff;
+    pointer-events: none; user-select: none;
+  }
+  .step-num-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem; letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+  .step-card.s1 .step-num-label { color: var(--purple-mid); }
+  .step-card.s2 .step-num-label { color: var(--pink); }
+  .step-card.s3 .step-num-label { color: var(--sky); }
+  .step-card.s4 .step-num-label { color: var(--green); }
+  .step-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 10px;
+  }
+  .step-text { font-size: 0.93rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── BENEFITS ── */
+  .benefits { background: var(--dark); }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .benefit-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px; padding: 36px 32px;
+    transition: border-color .25s, transform .25s, background .25s;
+    position: relative; overflow: hidden;
+  }
+  .benefit-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    opacity: 0; transition: opacity .3s;
+  }
+  .benefit-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.05); }
+  .benefit-card:hover::before { opacity: 1; }
+  .bc1::before, .bc1:hover { border-color: rgba(124,58,237,0.4); }
+  .bc1::before { background: linear-gradient(90deg, var(--purple), var(--purple-mid)); }
+  .bc2::before, .bc2:hover { border-color: rgba(255,110,180,0.4); }
+  .bc2::before { background: linear-gradient(90deg, var(--pink), #FF9ED5); }
+  .bc3::before, .bc3:hover { border-color: rgba(56,189,248,0.4); }
+  .bc3::before { background: linear-gradient(90deg, var(--sky), #7DD3FC); }
+  .bc4::before, .bc4:hover { border-color: rgba(34,197,94,0.4); }
+  .bc4::before { background: linear-gradient(90deg, var(--green), #86EFAC); }
+  .bc5::before, .bc5:hover { border-color: rgba(251,191,36,0.4); }
+  .bc5::before { background: linear-gradient(90deg, var(--yellow), #FDE68A); }
+  .bc6::before, .bc6:hover { border-color: rgba(168,85,247,0.4); }
+  .bc6::before { background: linear-gradient(90deg, var(--purple-mid), var(--pink)); }
+
+  .benefit-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; margin-bottom: 20px;
+  }
+  .bi1 { background: rgba(124,58,237,0.15); }
+  .bi2 { background: rgba(255,110,180,0.15); }
+  .bi3 { background: rgba(56,189,248,0.15); }
+  .bi4 { background: rgba(34,197,94,0.15); }
+  .bi5 { background: rgba(251,191,36,0.15); }
+  .bi6 { background: rgba(168,85,247,0.15); }
+  .benefit-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 10px;
+  }
+  .benefit-card p { font-size: 0.93rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── ELIGIBILITY ── */
+  .eligibility { background: var(--dark2); }
+  .elig-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .elig-box {
+    border-radius: 16px; padding: 40px 36px;
+    border: 1px solid;
+  }
+  .elig-box.ep { background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.25); }
+  .elig-box.es { background: rgba(255,110,180,0.08); border-color: rgba(255,110,180,0.25); }
+  .elig-box.ec { background: rgba(56,189,248,0.08); border-color: rgba(56,189,248,0.25); }
+  .elig-box h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .elig-box.ep h3 { color: var(--purple-mid); }
+  .elig-box.es h3 { color: var(--pink); }
+  .elig-box.ec h3 { color: var(--sky); }
+  .elig-list { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+  .elig-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 0.93rem; color: rgba(237,233,254,0.75); line-height: 1.55;
+  }
+  .dot-p { width:8px; height:8px; border-radius:50%; background:var(--purple-mid); flex-shrink:0; margin-top:7px; }
+  .dot-s { width:8px; height:8px; border-radius:50%; background:var(--pink);       flex-shrink:0; margin-top:7px; }
+  .dot-c { width:8px; height:8px; border-radius:50%; background:var(--sky);        flex-shrink:0; margin-top:7px; }
+
+  /* ── FAQ ── */
+  .faq { background: var(--dark); }
+  .faq-list { max-width: 780px; display: flex; flex-direction: column; gap: 4px; }
+  details {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px; overflow: hidden;
+    transition: border-color .2s, background .2s;
+  }
+  details[open] {
+    background: rgba(124,58,237,0.07);
+    border-color: rgba(168,85,247,0.3);
+  }
+  summary {
+    padding: 22px 28px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem; font-weight: 600; color: var(--white);
+    cursor: pointer; list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: color .2s;
+  }
+  summary:hover { color: var(--purple-mid); }
+  summary::after {
+    content: '+'; font-size: 1.5rem; font-weight: 300;
+    background: linear-gradient(135deg, var(--purple-mid), var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    flex-shrink: 0; transition: transform .3s;
+  }
+  details[open] summary::after { transform: rotate(45deg); }
+  .faq-body {
+    padding: 0 28px 24px; margin-top: -4px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 18px;
+    font-size: 0.94rem; color: var(--muted); line-height: 1.75;
+  }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: var(--dark2); text-align: center;
+    padding: 120px 52px; position: relative; overflow: hidden; z-index: 1;
+  }
+  .cta-glow {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 50% 70% at 50% 50%, rgba(124,58,237,0.15), transparent 70%),
+      radial-gradient(ellipse 30% 40% at 30% 60%, rgba(255,110,180,0.10), transparent 60%),
+      radial-gradient(ellipse 30% 40% at 70% 40%, rgba(56,189,248,0.08), transparent 60%);
+  }
+  .final-cta h2 { font-size: clamp(2.6rem, 5vw, 4.2rem); margin-bottom: 18px; position: relative; z-index: 2; }
+  .final-cta p {
+    color: rgba(237,233,254,0.6); max-width: 500px;
+    margin: 0 auto 52px; font-size: 1.05rem; position: relative; z-index: 2;
+  }
+  .btn-xl {
+    display: inline-block; position: relative; z-index: 2;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 60%, var(--yellow) 100%);
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 1.2rem;
+    letter-spacing: 1px; text-decoration: none;
+    padding: 22px 66px; border-radius: 100px;
+    box-shadow: 0 8px 40px rgba(168,85,247,0.4);
+    transition: transform .2s, box-shadow .2s;
+    animation: hero-pulse 2.8s infinite;
+  }
+  .btn-xl:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 50px rgba(168,85,247,0.6);
+    animation: none;
+  }
+  .disclaimer {
+    position: relative; z-index: 2;
+    margin-top: 40px; font-size: 0.78rem;
+    color: rgba(157,143,191,0.6);
+    max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.65;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 40px 52px;
+    display: flex; flex-wrap: wrap;
+    justify-content: space-between; align-items: center; gap: 20px;
+    position: relative; z-index: 1;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.35rem; letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--pink), var(--purple-mid), var(--sky));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a {
+    font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--purple-mid); }
+  .footer-copy { font-size: 0.76rem; color: rgba(157,143,191,0.45); text-align: right; line-height: 1.6; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    section { padding: 70px 20px; }
+    .hero { padding: 60px 20px; }
+    .trust-strip { padding: 20px; }
+    footer { flex-direction: column; text-align: center; padding: 32px 20px; }
+    .footer-copy { text-align: center; }
+  }
+  @media (max-width: 520px) {
+    .steps-grid, .benefits-grid, .elig-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">HigherIncomeJobs</div>
+  <a href="https://www.af9m8trk.com/7JC11KC6/B2W127GE/" target="_blank" rel="noopener" class="nav-cta">Explore Driver Jobs</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="orb orb4"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      US Driver Job Opportunities
+    </div>
+    <h1>
+      Sign Up &amp;<span class="grad">Start Driving.</span>
+    </h1>
+    <p class="hero-sub">
+      Looking for driving work across the United States? Register today — for free — and explore driver job listings across delivery, rideshare, trucking, and more.
+    </p>
+    <div class="hero-actions">
+      <a href="https://www.af9m8trk.com/7JC11KC6/B2W127GE/" target="_blank" rel="noopener" class="btn-hero">Sign Up — It's Free →</a>
+      <span class="hero-trust">No fees. No commitments. Just real opportunities.</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-chip"><span class="chip-icon">✅</span> 100% Free to Join</div>
+  <div class="trust-chip"><span class="chip-icon">🔒</span> Your Info Is Protected</div>
+  <div class="trust-chip"><span class="chip-icon">🗺️</span> Opportunities Across the US</div>
+  <div class="trust-chip"><span class="chip-icon">🚗</span> Multiple Driving Categories</div>
+  <div class="trust-chip"><span class="chip-icon">⏱️</span> Flexible Schedule Options</div>
+  <div class="trust-chip"><span class="chip-icon">📋</span> Simple Sign-Up Process</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="container">
+    <span class="section-tag tag-purple reveal">The Process</span>
+    <h2 class="reveal">How It Works</h2>
+    <p class="lead reveal">Simple, honest, and straightforward — here's what the journey looks like after you sign up.</p>
+    <div class="steps-grid">
+      <div class="step-card s1 reveal">
+        <div class="step-num-bg">01</div>
+        <div class="step-num-label">Step 01</div>
+        <div class="step-title">Create a Free Account</div>
+        <p class="step-text">Fill in your basic details — name, location, and the type of driving work you're interested in. No payment information is required at this stage.</p>
+      </div>
+      <div class="step-card s2 reveal">
+        <div class="step-num-bg">02</div>
+        <div class="step-num-label">Step 02</div>
+        <div class="step-title">Browse Job Listings</div>
+        <p class="step-text">Once registered, explore driver opportunities that match your location and preferences. Take your time — no pressure, no deadlines.</p>
+      </div>
+      <div class="step-card s3 reveal">
+        <div class="step-num-bg">03</div>
+        <div class="step-num-label">Step 03</div>
+        <div class="step-title">Apply to Employers Directly</div>
+        <p class="step-text">When you find a role that interests you, apply through that employer's own platform. Each company manages its own hiring process and timeline.</p>
+      </div>
+      <div class="step-card s4 reveal">
+        <div class="step-num-bg">04</div>
+        <div class="step-num-label">Step 04</div>
+        <div class="step-title">Get on the Road</div>
+        <p class="step-text">If accepted by an employer and onboarding is complete, you can begin working. Pay, hours, and conditions are set entirely by the employer you join.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="container">
+    <span class="section-tag tag-pink reveal">Why It Matters</span>
+    <h2 class="reveal">What Driving Work Can Offer</h2>
+    <p class="lead reveal">Driving jobs come in many forms and suit different lifestyles. Here's what makes them worth exploring.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card bc1 reveal">
+        <div class="benefit-icon bi1">🗓️</div>
+        <h3>Flexible Scheduling</h3>
+        <p>Many driving roles — particularly gig-based ones — allow you to choose when and how often you work, making them practical for people with other responsibilities.</p>
+      </div>
+      <div class="benefit-card bc2 reveal">
+        <div class="benefit-icon bi2">🗺️</div>
+        <h3>Opportunities Nationwide</h3>
+        <p>Driver jobs exist in cities, suburbs, and rural areas across all 50 US states. Whether you're in a major metro or a smaller town, relevant opportunities may be near you.</p>
+      </div>
+      <div class="benefit-card bc3 reveal">
+        <div class="benefit-icon bi3">🚪</div>
+        <h3>Low Barrier to Entry</h3>
+        <p>Many driving positions don't require a college degree or specialized training. A valid license, a clean record, and a reliable vehicle are often the main requirements.</p>
+      </div>
+      <div class="benefit-card bc4 reveal">
+        <div class="benefit-icon bi4">📦</div>
+        <h3>Variety of Role Types</h3>
+        <p>From local delivery and food delivery to rideshare, trucking, and medical transport — there are many categories to explore based on your license and preferences.</p>
+      </div>
+      <div class="benefit-card bc5 reveal">
+        <div class="benefit-icon bi5">🔄</div>
+        <h3>Faster Start Times</h3>
+        <p>Some driving roles have shorter hiring timelines than traditional jobs. Once approved by an employer and onboarding is completed, some positions allow you to start quickly.</p>
+      </div>
+      <div class="benefit-card bc6 reveal">
+        <div class="benefit-icon bi6">📱</div>
+        <h3>App-Based Convenience</h3>
+        <p>Many modern driving jobs operate through mobile apps — making it easy to manage deliveries, track work, and communicate with dispatchers or customers from your phone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ELIGIBILITY -->
+<section class="eligibility">
+  <div class="container">
+    <span class="section-tag tag-sky reveal">Eligibility</span>
+    <h2 class="reveal">General Requirements</h2>
+    <p class="lead reveal">Requirements differ by employer and job type. The points below reflect common criteria across most driving roles in the US. Always verify specifics directly with each employer before applying.</p>
+    <div class="elig-grid">
+      <div class="elig-box ep reveal">
+        <h3>🟣 What You Typically Need</h3>
+        <ul class="elig-list">
+          <li><span class="dot-p"></span>A valid US driver's license appropriate for the role</li>
+          <li><span class="dot-p"></span>Minimum age of 18 (some roles require 21 or older)</li>
+          <li><span class="dot-p"></span>Legal authorization to work in the United States</li>
+          <li><span class="dot-p"></span>Ability to pass a background and driving record check</li>
+          <li><span class="dot-p"></span>Reliable vehicle in good condition (for gig-based roles)</li>
+          <li><span class="dot-p"></span>Valid auto insurance meeting the employer's minimum requirements</li>
+        </ul>
+      </div>
+      <div class="elig-box es reveal">
+        <h3>🩷 What May Affect Eligibility</h3>
+        <ul class="elig-list">
+          <li><span class="dot-s"></span>A suspended or revoked license will disqualify most applications</li>
+          <li><span class="dot-s"></span>Multiple serious traffic violations in recent years</li>
+          <li><span class="dot-s"></span>DUI or DWI convictions (policies vary by employer)</li>
+          <li><span class="dot-s"></span>Vehicle that does not meet safety or age requirements</li>
+          <li><span class="dot-s"></span>Inability to pass a required drug screening where applicable</li>
+          <li><span class="dot-s"></span>No valid work authorization in the US</li>
+        </ul>
+      </div>
+      <div class="elig-box ec reveal">
+        <h3>🩵 For Commercial / CDL Roles</h3>
+        <ul class="elig-list">
+          <li><span class="dot-c"></span>A valid Commercial Driver's License (CDL) is required</li>
+          <li><span class="dot-c"></span>Minimum age of 21 for interstate driving in most cases</li>
+          <li><span class="dot-c"></span>DOT medical certification may be required</li>
+          <li><span class="dot-c"></span>Experience requirements vary by carrier and route type</li>
+          <li><span class="dot-c"></span>Endorsements (HazMat, Tanker, etc.) may be needed for specific loads</li>
+          <li><span class="dot-c"></span>Each company has its own hiring standards — check directly</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <span class="section-tag tag-green reveal">FAQ</span>
+    <h2 class="reveal">Frequently Asked Questions</h2>
+    <p class="lead reveal">Clear, honest answers to the most common questions we receive.</p>
+    <div class="faq-list">
+      <details class="reveal">
+        <summary>Is this completely free to sign up?</summary>
+        <div class="faq-body">Yes, completely free. You will not be asked for any payment to register or browse job opportunities. We receive a referral fee from partner platforms when you successfully connect — not from you.</div>
+      </details>
+      <details class="reveal">
+        <summary>Does signing up guarantee me a job?</summary>
+        <div class="faq-body">No. Signing up gives you access to job listings and hiring platforms. Whether you receive a job offer depends entirely on the employer — their current needs, your application, and whether you meet their requirements.</div>
+      </details>
+      <details class="reveal">
+        <summary>Will an interview be arranged for me automatically?</summary>
+        <div class="faq-body">No. We do not schedule interviews on your behalf. If an employer requires an interview, that will be arranged directly between you and them as part of their own hiring process.</div>
+      </details>
+      <details class="reveal">
+        <summary>Are jobs currently available in my area?</summary>
+        <div class="faq-body">We cannot confirm which specific positions are open at any given moment, as availability changes frequently. After signing up, you can explore current listings filtered by your location to see what's relevant to you.</div>
+      </details>
+      <details class="reveal">
+        <summary>What kind of driver's license do I need?</summary>
+        <div class="faq-body">It depends on the role. Standard delivery and rideshare jobs typically require only a regular Class D license. Trucking and commercial roles require a CDL. Medical transport and specialty roles may have additional licensing requirements. Each listing will specify what's needed.</div>
+      </details>
+      <details class="reveal">
+        <summary>Do I need my own vehicle?</summary>
+        <div class="faq-body">For gig-based roles such as rideshare and food delivery, yes — a personal vehicle is typically required. For employed positions like package delivery or trucking, employers often provide the vehicle. It varies by role and employer.</div>
+      </details>
+      <details class="reveal">
+        <summary>Will there be a background check?</summary>
+        <div class="faq-body">Most driving employers conduct a background check, which typically includes your driving record and may include a criminal history review. Requirements vary by company and role. We recommend reviewing each employer's policies before you apply.</div>
+      </details>
+      <details class="reveal">
+        <summary>I have a past violation. Can I still apply?</summary>
+        <div class="faq-body">Possibly. Minor or older infractions may not disqualify you from many roles. More serious offenses — like a DUI — are more likely to affect eligibility for certain positions. Each employer makes their own determination. It is always worth applying and allowing them to review your record directly.</div>
+      </details>
+      <details class="reveal">
+        <summary>Is my personal information protected?</summary>
+        <div class="faq-body">We handle your information responsibly and do not share it without your knowledge. We also encourage you to read the privacy policy of any employer platform you use, as they have their own separate data practices.</div>
+      </details>
+      <details class="reveal">
+        <summary>What if a position I find is no longer available?</summary>
+        <div class="faq-body">Job availability changes regularly. If a position you're interested in is no longer open, we encourage you to explore other listings on the platform. New opportunities are added frequently across different locations and categories.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="cta-glow"></div>
+  <div class="container">
+    <span class="section-tag tag-yellow reveal" style="display:inline-block; margin-bottom:20px;">Ready?</span>
+    <h2 class="reveal">Take the First Step Today</h2>
+    <p class="reveal">Sign up for free, explore what's available, and find driving work that fits your life. No pressure. No hidden costs. No false promises.</p>
+    <a href="https://www.af9m8trk.com/7JC11KC6/B2W127GE/" target="_blank" rel="noopener" class="btn-xl reveal">Sign Up — It's Free →</a>
+    <p class="disclaimer reveal">
+      HigherIncomeJobs connects users with third-party driver job platforms. We are not an employer and do not guarantee employment, a specific job offer, or any particular income level. All hiring decisions are made solely by individual employers. Job availability varies by location and changes frequently. By signing up, you acknowledge that any interview or hiring process is conducted independently by each employer.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">HigherIncomeJobs</div>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Use</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">
+    © 2026 HigherIncomeJobs. All rights reserved.<br>
+    <span>This site connects users with third-party job platforms. We are not an employer.</span>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
